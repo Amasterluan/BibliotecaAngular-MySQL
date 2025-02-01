@@ -1,0 +1,30 @@
+<div class="orders-container">
+    <h1>Pedidos Realizados</h1>
+    <div class="order-list" *ngFor="let order of orderData">
+      <!-- Pedido 1 -->
+      <div class="order-card">
+        <div class="order-content">
+            <div class="order-header">
+                <span class="order-id">Pedido {{order.id}}</span>
+                <span class="order-status">Status: <span class="status-shipped">Enviado</span></span>
+              </div>
+          <div class="product-info">
+            <img src="https://images.vexels.com/media/users/3/192451/isolated/preview/67723f2e9e8ed6b6a1818e2155793132-sacos-de-compras-de-inverno-planas.png" alt="Produto" class="product-image">
+            <div class="product-details">
+              <p><strong>Nome do Cliente:</strong> {{order.name}}</p>
+              <p><strong>CPF:</strong> {{order.cpf}}</p>
+              <p><strong>E-mail:</strong> {{order.email}}</p>
+              <p><strong>Telefone:</strong> {{order.numberPhone}}</p>
+              <p><strong>Endereço:</strong> {{order.address}}, {{order.city}}, {{order.state}} - {{order.CEP}}</p>
+              <p><strong>Valor Total:</strong> R$ {{order.totalPrice}}</p>
+            </div>
+          </div>
+          
+          <div class="order-actions">
+            <button class="btn" (click)="cancelOrder(order.id)">Cancelar Pedido</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

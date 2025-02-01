@@ -1,0 +1,200 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f6f6f6;
+  font-family: 'Lato', sans-serif;
+}
+
+header {
+  background: #0a9efb;
+  color: white;
+  font-size: 24px;
+  padding: 20px 0;
+  text-align: center;
+}
+
+main {
+  background: #fff;
+  padding: 30px;
+}
+
+.page-title {
+  font-size: 40px;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  gap: 30px;
+}
+
+.content section {
+  flex: 1;
+}
+
+.content aside {
+  min-width: 250px;
+}
+
+button {
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table thead th {
+  text-align: left;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  color: #666;
+  border-bottom: 3px solid #eee;
+}
+
+table tbody tr {
+  border-bottom: 3px solid #eee;
+}
+
+table tbody tr:last-child {
+  border: none;
+}
+
+table tbody td {
+  padding: 20px 0;
+}
+
+.product {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.product img {
+  width: 150px;
+  border-radius: 6px;
+}
+
+.product .name {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.product .category {
+  color: #666;
+}
+
+.qty {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 80px;
+  height: 30px;
+  background: #eee;
+  border-radius: 20px;
+}
+
+.qty span {
+  margin: 0 10px;
+}
+
+.qty button {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  padding: 0 10px;
+}
+
+.qty button:hover {
+  background: #ddd;
+}
+
+.remove {
+  background: #eee;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.remove:hover {
+  background: #ddd;
+}
+
+aside .box {
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  background: #eee;
+  color: #222222;
+}
+
+aside .box header,
+aside .box footer {
+  padding: 15px 20px;
+  font-size: 18px;
+}
+
+aside .box header {
+  border-bottom: 1px solid #ccc;
+}
+
+aside .box .info {
+  padding: 20px;
+  font-size: 16px;
+}
+
+aside .box .info > div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+aside .box .info button {
+  color: #28a745;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+}
+
+aside .box footer {
+  background: #ddd;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cupomSpace{
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+aside > button {
+  border: none;
+  padding: 15px 0;
+  color: white;
+  background: #0a9efb;
+  width: 100%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 16px;
+}
+
+aside > button:hover {
+  background: #004483;
+}

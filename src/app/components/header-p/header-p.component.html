@@ -1,0 +1,71 @@
+<header>
+  <div class="container">
+    <nav class="cont">
+      <!-- Logo -->
+      <div class="logo">
+        <a routerLink="/">
+          <img
+            src="https://live.staticflickr.com/65535/52873737719_62afdb8bf0_o.png"
+            alt="Logo"
+          />
+        </a>
+      </div>
+
+      <!-- Barra de Pesquisa -->
+      <div *ngIf="menuType === 'default'" id="divBusca">
+        <input
+          type="text"
+          #searchInput
+          id="txtBusca"
+          placeholder="Buscar..."
+          (keyup)="searchProducts($event)"
+          (blur)="hideSearch()"
+        />
+        <button id="btnBusca" (click)="submitSearch(searchInput.value)">
+          Buscar
+        </button>
+
+        <!-- Sugestões de Pesquisa -->
+        <ul class="suggested-result" *ngIf="searchResult?.length">
+          <li *ngFor="let item of searchResult">
+            <a (mousedown)="redirectToDetails(item.id)">
+              {{ item.nomeLivro }}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Menu de Navegação Dinâmico -->
+      <div class="menu">
+        <nav [ngSwitch]="menuType">
+          <!-- Menu Padrão -->
+          <ng-container *ngSwitchCase="'default'">
+            <a routerLink="/"><b>Home</b></a>
+            <a routerLink="/seller-auth"><b>Vendedores</b></a>
+            <a routerLink="/user-auth"><b>Cliente</b></a>
+            <a href="#"
+              ><b>Carrinho({{ cartItems }})</b></a
+            >
+          </ng-container>
+
+          <!-- Menu para Usuário -->
+          <ng-container *ngSwitchCase="'user'">
+            <a routerLink="/"><b>Home</b></a>
+            <a routerLink="/seller-auth"><b>Vendedores</b></a>
+            <a routerLink="my-orders"><b>Meus Pedidos</b></a>
+            <a (click)="userLogout()"><b>Sair</b></a>
+            <a [routerLink]="cartItems>0?'cart':null">
+              <b>Carrinho({{ cartItems }})</b></a>
+          </ng-container>
+
+          <!-- Menu para Vendedor -->
+          <ng-container *ngSwitchCase="'seller'">
+            <a routerLink="/seller-add-product"><b>Adicionar Produtos</b></a>
+            <a routerLink="/seller-home"><b>Lista de Produtos</b></a>
+            <a (click)="logout()"><b>Sair</b></a>
+          </ng-container>
+        </nav>
+      </div>
+    </nav>
+  </div>
+</header>

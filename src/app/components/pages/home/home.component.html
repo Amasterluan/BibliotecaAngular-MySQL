@@ -1,0 +1,24 @@
+<div class="product-list-wrapper">
+    <h2>Produtos Populares</h2>
+    <div class="row">
+        <div class="col-sm-3" *ngFor="let item of trendyProducts">
+            <div class="product-item">
+                <a routerLink="details/{{item.idlivros}}">
+                    <img src="{{item.imagemLivro}}" alt="{{item.titulo_livro}}">
+                </a>
+                <div class="product-details">
+                    <h6 class="name-header">{{item.titulo_livro}}</h6>
+                    <h6 class="preco-product">Preço: {{item.preco | currency}}</h6>
+                    <h6 class="autor-product">Autor: {{item.nome_autor}}</h6>
+                </div>
+                <div class="product-categoria">
+                    <h6>{{item.nome_genero}}</h6>
+                </div>
+                <div class="product-footer">
+                    <a routerLink="details/{{item.idlivros}}">+ Detalhes</a>
+                    <a href="#">+ Carrinho</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

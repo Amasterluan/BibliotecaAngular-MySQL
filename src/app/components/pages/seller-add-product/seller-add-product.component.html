@@ -1,0 +1,44 @@
+<div class="add-product">
+    <div class="background">  
+      <div class="page">
+        <form #addProduct="ngForm" (ngSubmit)="submit(addProduct.value)" class="formLogin">
+          <h1>Cadastro do Produto</h1>
+          <p class="mensagem-p">{{addProductMessage}}</p>
+          
+          <div class="input-group">
+            <label>Foto do Livro
+              <input type="text" ngModel name="imagemLivro" placeholder="URL da Imagem do Produto" autofocus="true" />
+            </label>
+            <label>Nome do Livro
+              <input type="text" ngModel name="nomeLivro" placeholder="Nome da Obra" autofocus="true" />
+            </label>
+          </div>
+          
+          <div class="input-group">
+            <label>Nome do Autor
+              <input type="text" ngModel name="nomeAutor" placeholder="Nome do Autor" autofocus="true" />
+            </label>
+            <label>Categoria do Livro
+              <input type="text" ngModel name="categoria" placeholder="Categoria do Livro" autofocus="true" />
+            </label>
+          </div>
+          
+          <div class="input-group">
+            <label>Preço
+              <input type="text" ngModel name="preco" placeholder="Digite o preço do Livro" autofocus="true" />
+            </label>
+            <label>Estoque
+              <input type="number" ngModel name="estoque" placeholder="Quantidade em Estoque" autofocus="true" />
+            </label>
+          </div>
+          
+          <label>Descrição do Livro
+            <textarea ngModel name="descricaoLivro" placeholder="Descrição da Obra" autofocus="true"></textarea>
+          </label>
+          
+          <input type="submit" value="Cadastrar Livro" class="btn" id="botao"/>
+        </form>    
+      </div>
+    </div>
+  </div>
+  

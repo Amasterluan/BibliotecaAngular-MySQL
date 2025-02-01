@@ -1,0 +1,43 @@
+<div class="container" *ngIf="productData">
+      <div class="product-details">
+        <div class="product-gallery">
+          <img src="{{productData.imagemLivro}}" alt="Fone de Ouvido Bluetooth" />
+          <div class="gallery-thumbnails">
+          </div>
+        </div>
+        <div class="product-info">
+          <h2>{{productData.nomeLivro}}</h2>
+          <p class="price">R$ {{productData.preco}}</p>
+          <p class="author-name">{{productData.nomeAutor}}</p>
+          <p class="product-description"> {{productData.descricaoLivro}}</p>
+          <div class="product-options">
+            <label for="quantity">Quantidade:</label>
+            <input type="number" id="quantity" value="{{productQuantity}}" />
+          </div>
+          <div class="buttons">
+            <button *ngIf="!removeCart" class="add-to-cart" (click)="AddToCart()">
+              <i class="fas fa-shopping-cart"></i> Adicionar ao carrinho
+            </button>
+            <button *ngIf="removeCart" class="add-to-cart" (click)="removeToCart(productData.id)">
+              <i class="fas fa-shopping-cart"></i> Remover do carrinho
+            </button>
+            <button class="add-to-wishlist">
+              <i class="fas fa-heart"></i> Adicionar à lista de desejos
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-specs">
+        <ul class="tabs">
+          <li><i class="name_details"></i> Detalhes</li>
+        </ul>
+        <div class="specs-content">
+          <div>
+            <p><strong>Nome da Obra: </strong>{{productData.nomeLivro}}</p>
+            <p><strong>Nome do Autor (a): </strong>{{productData.nomeAutor}}</p>
+            <p><strong>Categória: </strong>{{productData.categoria}}</p>
+            <p><strong>Descrição: </strong><br>{{productData.descricaoLivro}}</p>
+          </div>
+        </div>
+      </div>
+</div>

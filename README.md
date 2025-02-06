@@ -11,9 +11,20 @@ Este é o backend de uma aplicação de livraria, desenvolvido com Node.js, Expr
 - **Cors**: Middleware para habilitar requisições entre domínios.
 - **Dotenv**: Carregar variáveis de ambiente.
 
-## Estrutura de Pastas
+## Estrutura de Pastas do BackEnd
 
-/backend /config - db.js // Configuração do banco de dados MySQL. /controllers - productController.js // Lógica de negócios para produtos. - userController.js // Lógica de negócios para usuários. /routes - productRoutes.js // Definição das rotas de produtos. - userRoutes.js // Definição das rotas de usuários. /middleware - authMiddleware.js // (Opcional) Middleware de autenticação. - server.js // Arquivo principal para iniciar o servidor.
+├── backend
+│ ├── config
+│ │ └── db.js // Configuração do banco de dados MySQL.
+│ ├── controllers
+│ │ ├── productController.js // Lógica de negócios para produtos.
+│ │ └── userController.js // Lógica de negócios para usuários.
+│ ├── routes
+│ │ ├── productRoutes.js // Definição das rotas de produtos.
+│ │ └── userRoutes.js // Definição das rotas de usuários.
+│ ├── middleware
+│ │ └── authMiddleware.js // (Opcional) Middleware de autenticação.
+│ └── server.js // Arquivo principal para iniciar o servidor.
 
 ## Autor
 - Desenvolvido por Luan Moreira.

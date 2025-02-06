@@ -13,6 +13,9 @@ Este é o backend de uma aplicação de livraria, desenvolvido com Node.js, Expr
 
 ## Estrutura de Pastas do BackEnd
 
+```
+$ tree 
+
 ├── backend
 │ ├── config
 │ │ └── db.js // Configuração do banco de dados MySQL.
@@ -25,6 +28,7 @@ Este é o backend de uma aplicação de livraria, desenvolvido com Node.js, Expr
 │ ├── middleware
 │ │ └── authMiddleware.js // (Opcional) Middleware de autenticação.
 │ └── server.js // Arquivo principal para iniciar o servidor.
+```
 
 ## Autor
 - Desenvolvido por Luan Moreira.

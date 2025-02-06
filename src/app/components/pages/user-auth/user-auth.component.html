@@ -1,0 +1,103 @@
+<div class="background">
+  <div class="page">
+    <div *ngIf="!showLogin" class="user-Signup">
+      <form
+        #userSignup="ngForm"
+        (ngSubmit)="signup(userSignup.value)"
+        class="formLogin"
+      >
+        <h1>Cadastro</h1>
+        <br />
+        <label
+          >Nome Completo
+          <br />
+          <input
+            type="text"
+            placeholder="Digite seu nome"
+            autofocus="true"
+            ngModel
+            name="nome"
+          />
+        </label>
+        <label
+          >CPF
+          <br />
+          <input
+            type="text"
+            placeholder="Digite seu CPF"
+            maxlength="14"
+            ngModel
+            name="cpf"
+          />
+        </label>
+        <label
+          >E-mail
+          <br />
+          <input
+            type="email"
+            placeholder="Digite seu e-mail"
+            ngModel
+            name="email"
+          />
+        </label>
+
+        <label
+          >Senha
+          <br />
+          <input
+            type="password"
+            placeholder="Digite sua senha"
+            ngModel
+            name="senha"
+          />
+        </label>
+        <a (click)="showLogin=true">Fazer Login</a>
+        <a href="/">Voltar a pagina inicial</a>
+        <input type="submit" value="Cadastrar" [disabled]="userSignup.invalid" class="btn" id="botao" />
+      </form>
+    </div>
+    
+    
+    <div *ngIf="showLogin" class="user-Login">
+      <form
+        #userLogin="ngForm"
+        (ngSubmit)="login(userLogin.value)"
+        class="formLogin"
+      >
+        <h1>Login</h1>
+        <br />
+        <span class="Error" *ngIf="authError">{{ authError }}</span>
+        <label
+          >E-mail
+          <br />
+          <input
+            type="email"
+            placeholder="Digite seu e-mail"
+            ngModel
+            name="email"
+            #email="ngModel" required
+          /><br>
+          <span class="invalidInput" *ngIf="email.invalid && email.touched"> Digite um e-mail válido </span>    
+        </label>
+
+        <label
+          >Senha
+          <br />
+          <input
+            type="password"
+            placeholder="Digite sua senha"
+            ngModel
+            minlength="6"
+            maxlength="30"
+            name="senha"
+            #password="ngModel" required
+          />
+          <span class="invalidInput" *ngIf="password.invalid && password.touched"> Digite uma senha válida</span>
+        </label>
+        <a (click)="showLogin = false">Cadastre-se</a>
+        <a href="/">Voltar a pagina inicial</a>
+        <input type="submit" value="Login" [disabled]="userLogin.invalid" value="Login" class="btn" id="botao" />
+      </form>
+    </div>
+  </div>
+</div>

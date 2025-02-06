@@ -1,0 +1,71 @@
+<div class="add-product">
+  <div class="background">  
+    <div class="page">
+      <div class="form-and-image">
+        <div class="image-container">
+          <div class="image-box">
+            <img [src]="product.image" alt="Imagem do Livro" class="book-image"/>
+            <div class="image-text">
+              <h3 class="book-title">{{ product.title }}</h3>
+              <p class="book-author">{{ product.author }}</p>
+              <p class="book-genre">{{ product.genre }}</p>
+            </div>
+          </div>
+        </div>
+
+        <form #addProduct="ngForm" (ngSubmit)="onUpdateProduct(addProduct)" class="formLogin">
+          <p class="message-p">{{ productMessage }}</p>
+          <h1>Atualizar Produto</h1>
+
+          <!-- Loading message -->
+          <div *ngIf="loading" class="loading">Carregando...</div>
+
+          <!-- Formulario para atualizar produto -->
+          <div *ngIf="!loading && product" class="form-content">
+            <div class="input-group">
+              <label>Foto do Livro
+                <input type="text" [(ngModel)]="product.image" name="image" placeholder="URL da Imagem do Produto" required />
+              </label>
+              <label>Nome do Livro
+                <input type="text" [(ngModel)]="product.title" name="title" placeholder="Nome da Obra" required />
+              </label>
+            </div>
+
+            <div class="input-group">
+              <label>Autor
+                <input type="text" [(ngModel)]="product.author" name="author" placeholder="Nome do Autor" required />
+              </label>
+              <label>Gênero
+                <input type="text" [(ngModel)]="product.genre" name="genre" placeholder="Categoria" required />
+              </label>
+            </div>
+
+            <div class="input-group">
+              <label>Ano de Publicação
+                <input type="date" [(ngModel)]="product.year" name="publicationYear" required />
+              </label>
+              <label>Nome da Editora
+                <input type="text" [(ngModel)]="product.publisher" name="publisher" placeholder="Nome da Editora" required />
+              </label>
+            </div>
+
+            <div class="input-group">
+              <label>Preço
+                <input type="number" [(ngModel)]="product.price" name="price" placeholder="Preço" required />
+              </label>
+              <label>Estoque
+                <input type="number" [(ngModel)]="product.stock" name="stock" placeholder="Estoque" required />
+              </label>
+            </div>
+
+            <label>Descrição
+              <textarea [(ngModel)]="product.description" name="description" placeholder="Descrição da Obra" required></textarea>
+            </label>
+
+            <input type="submit" value="Atualizar Produto" class="btn"/>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

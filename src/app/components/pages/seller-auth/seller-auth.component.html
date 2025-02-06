@@ -1,0 +1,54 @@
+<div class="seller-auth">
+  <div class="background">  
+    <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm.value)" class="formLogin">
+      <h1>{{ showLogin ? 'Login' : 'Cadastro' }} do Vendedor</h1>
+      
+      <div *ngIf="!showLogin">
+        <label>CPF
+          <input type="text" ngModel name="cpf_user" required pattern="\d{11}" 
+                 placeholder="Digite seu CPF (apenas números)">
+        </label>
+      </div>
+
+      <label>E-mail
+        <input type="email" ngModel name="email" required 
+               placeholder="exemplo@dominio.com">
+      </label>
+
+      <label>Senha
+        <input type="password" ngModel name="senha" required 
+               placeholder="Mínimo 6 caracteres">
+      </label>
+
+      <div *ngIf="!showLogin">
+        <label>Nome Completo
+          <input type="text" ngModel name="nome_user" required 
+                 placeholder="Seu nome completo">
+        </label>
+        
+        <label>Endereço
+          <input type="text" ngModel name="endereco_user" required 
+                 placeholder="Rua, número - Cidade/UF">
+        </label>
+
+        <label>Telefone
+          <input type="tel" ngModel name="telefone_user" required 
+                 pattern="[0-9]{10,11}" 
+                 placeholder="DDD + número (apenas números)">
+        </label>
+      </div>
+
+      <p class="error-p">{{ authError }}</p>
+
+      <div class="actions">
+        <button type="button" class="link-btn" 
+                (click)="showLogin ? openSignUp() : openLogin()">
+          {{ showLogin ? 'Criar nova conta' : 'Já tenho uma conta' }}
+        </button>
+        <button type="submit" class="btn">
+          {{ showLogin ? 'Entrar' : 'Cadastrar' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<header>
+  <div class="container">
+    <nav class="cont">
+      <!-- Logo -->
+      <div class="logo">
+        <a routerLink="/">
+          <img
+            src="https://live.staticflickr.com/65535/52873737719_62afdb8bf0_o.png"
+            alt="Logo"
+          />
+        </a>
+      </div>
+
+      <!-- Barra de Pesquisa -->
+      <div id="divBusca">
+        <input
+          type="text"
+          #searchInput
+          id="txtBusca"
+          placeholder="Buscar..."
+
+        />
+        <button id="btnBusca">
+          Buscar
+        </button>
+
+      </div>
+
+      <!-- Menu de Navegação Dinâmico -->
+      <div class="menu"><nav>
+        <a routerLink="/"><b>Home</b></a>
+        <a routerLink="/seller-auth"><b>Vendedores</b></a>
+        <a routerLink="/user-auth"><b>Cliente</b></a>
+        <a routerLink="/seller-add-product"><b>Add Livro</b></a>
+        <a routerLink="/seller-home"><b>Lista de Livros</b></a>
+      </nav>
+      </div>
+    </nav>
+  </div>
+</header>

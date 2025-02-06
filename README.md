@@ -14,8 +14,6 @@ Este é o backend de uma aplicação de livraria, desenvolvido com Node.js, Expr
 ## Estrutura de Pastas do BackEnd
 
 ```
-$ tree 
-
 ├── backend
 │ ├── config
 │ │ └── db.js // Configuração do banco de dados MySQL.

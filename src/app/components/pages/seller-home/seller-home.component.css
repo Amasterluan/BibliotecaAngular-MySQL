@@ -3,45 +3,61 @@
   margin: 0 auto;
   padding: 20px;
   background-color: #fff;
-  border-radius: 7px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .products-list h1 {
   text-align: center;
   font-size: 2.3em;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 20px;
+  color: #333;
+}
+
+.messagem-p {
+  color: #e74c3c;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .products-list table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
 }
 
 .products-list table thead tr {
   background-color: #f4f4f4;
+  font-size: 15px;
 }
 
 .products-list table th,
 .products-list table td {
-  padding: 15px;
+  padding: 8px 15px;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
 
 .products-list table th {
-  font-size: 14px;
   font-weight: 600;
+  color: #333;
+}
+
+.products-list table td {
+  color: #555;
+  font-size: 14px;
 }
 
 .products-list table td img {
-  width: 100px;
+  width: 80px;
   height: auto;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 .products-list table tbody tr:hover {
-  background-color: #f1f1f1;
+  background-color: #f9f9f9;
 }
 
 .products-list table tbody tr:nth-child(even) {
@@ -51,18 +67,64 @@
 .products-list table .action-cell {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+}
+
+.products-list table .action-cell fa-icon {
+  margin-right: 10px;
+  cursor: pointer;
+  transition: color 0.3s, transform 0.2s ease-in-out;
+}
+
+.products-list table .action-cell fa-icon:hover {
+  color: #e74c3c;
+}
+
+.products-list table .action-cell fa-icon.delete-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.products-list table .action-cell fa-icon.delete-icon:active {
+  transform: scale(1.2); /* Aumenta o ícone quando clicado */
 }
 
 .products-list table .price {
-  flex: 1;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.products-list table .buttonEdit {
+  margin-left: 10px;
+  background-color: #3498db;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.products-list table .buttonEdit:hover {
+  background-color: #2980b9;
+}
+
+.products-list table .action-cell {
+  width: 120px; /* Ajuste o tamanho da célula de ação */
+}
+
+.products-list table .description-cell {
+  max-width: 200px; /* Reduz a largura da descrição */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Adiciona '...' caso o texto seja longo */
+  white-space: nowrap; /* Impede que o texto quebre em várias linhas */
 }
 
 .products-list table button {
   background-color: #e74c3c;
   color: #fff;
   border: none;
-  padding: 8px 12px;
+  padding: 6px 12px;
   border-radius: 4px;
   font-size: 14px;
   cursor: pointer;
@@ -71,12 +133,4 @@
 
 .products-list table button:hover {
   background-color: #c0392b;
-}
-
-.messagem-p{
-  color: #e74c3c;
-}
-
-.buttonEdit{
-  margin-left: 10px;
 }

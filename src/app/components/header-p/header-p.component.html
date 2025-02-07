@@ -28,11 +28,11 @@
       <div class="menu">
         <nav>
           <a routerLink="/"><b>Home</b></a>
-          <a routerLink="/seller-auth"><b>Vendedores</b></a>
+          <!--<a routerLink="/seller-auth"><b>Vendedores</b></a> -->
 
           <!-- Exibe o botão de "Cliente" apenas quando não estiver logado -->
           <ng-container *ngIf="!isLoggedIn">
-            <a routerLink="/user-auth"><b>Cliente</b></a>
+            <a routerLink="/user-auth"><b>Login/SingUp</b></a>
           </ng-container>
 
 

@@ -54,7 +54,7 @@ const login = (req, res) => {
       nome: user.nome_user,
       email: user.email_user,
       cpf: user.cpf_user,
-      telefone: user.telefone_user
+      telefone: user.telefone_user,
     });
   });
 };
@@ -84,12 +84,12 @@ const getUserAddress = (req, res) => {
 
 // Atualizar dados do usuário
 const updateUserData = (req, res) => {
-  const { nome, email, senha_user, cpf_user, telefone_user } = req.body;
+  const { nome, email, cpf_user, telefone_user } = req.body;
   const userId = req.params.id;
 
   db.query(
-    "UPDATE usuarios SET nome_user = ?, email_user = ?, senha_user = ?, cpf_user = ?, telefone_user = ? WHERE idusuarios = ?",
-    [nome, email, senha_user, cpf_user, telefone_user, userId],
+    "UPDATE usuarios SET nome_user = ?, email_user = ?, cpf_user = ?, telefone_user = ? WHERE idusuarios = ?",
+    [nome, email, cpf_user, telefone_user, userId],
     (err, result) => {
       if (err) {
         console.error("Erro ao atualizar dados do usuário:", err);

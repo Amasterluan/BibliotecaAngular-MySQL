@@ -1,63 +1,63 @@
-<div class="user-profile-container">
-  <div class="user-data">
-    <h2>Dados do Usuário</h2>
-    <div class="user-details">
-      <!-- Aqui vão os campos de dados do usuário -->
-      <div class="detail">
-        <label>Nome:</label>
-        <span *ngIf="!editingUserData">{{ user.nome }}</span>
-        <input *ngIf="editingUserData" [(ngModel)]="user.nome" placeholder="Digite o nome" />
+  <div class="user-profile-container">
+    <div class="user-data">
+      <h2>Dados do Usuário</h2>
+      <div class="user-details">
+        <!-- Aqui vão os campos de dados do usuário -->
+        <div class="detail">
+          <label>Nome:</label>
+          <span *ngIf="!editingUserData">{{ user.nome }}</span>
+          <input *ngIf="editingUserData" [(ngModel)]="user.nome" placeholder="Digite o nome" />
+        </div>
+        <div class="detail">
+          <label>Email:</label>
+          <span *ngIf="!editingUserData">{{ user.email || 'Não informado'}}</span>
+          <input *ngIf="editingUserData" [(ngModel)]="user.email" placeholder="Digite o email" />
+        </div>
+        <div class="detail">
+          <label>CPF:</label>
+          <span *ngIf="!editingUserData">{{ user.cpf || 'Não informado'}}</span>
+          <input *ngIf="editingUserData" [(ngModel)]="user.cpf_user" placeholder="Digite seu CPF" />
+        </div>
+        <div class="detail">
+          <label>Telefone:</label>
+          <span *ngIf="!editingUserData">{{ user.telefone || 'Não informado'}}</span>
+          <input *ngIf="editingUserData" [(ngModel)]="user.telefone_user" placeholder="Digite seu Telefone" />
+        </div>
       </div>
-      <div class="detail">
-        <label>Email:</label>
-        <span *ngIf="!editingUserData">{{ user.email || 'Não informado'}}</span>
-        <input *ngIf="editingUserData" [(ngModel)]="user.email" placeholder="Digite o email" />
-      </div>
-      <div class="detail">
-        <label>CPF:</label>
-        <span *ngIf="!editingUserData">{{ user.cpf || 'Não informado'}}</span>
-        <input *ngIf="editingUserData" [(ngModel)]="user.cpf_user" placeholder="Digite seu CPF" />
-      </div>
-      <div class="detail">
-        <label>Telefone:</label>
-        <span *ngIf="!editingUserData">{{ user.telefone || 'Não informado'}}</span>
-        <input *ngIf="editingUserData" [(ngModel)]="user.telefone_user" placeholder="Digite seu Telefone" />
-      </div>
+      <button *ngIf="!editingUserData" (click)="editUserData()">Editar Dados</button>
+      <button *ngIf="editingUserData" (click)="saveUserData()">Salvar</button>
     </div>
-    <button *ngIf="!editingUserData" (click)="editUserData()">Editar Dados</button>
-    <button *ngIf="editingUserData" (click)="saveUserData()">Salvar</button>
-  </div>
 
-  <div class="user-address">
-    <h2>Endereço</h2>
-    <div class="address-details">
-      <div class="detail">
-        <label>Rua:</label>
-        <span *ngIf="!editingUserAddress">{{ userAddress.logradouro || 'Não informado' }}</span>
-        <input *ngIf="editingUserAddress" [(ngModel)]="userAddress.logradouro" placeholder="Digite a rua" />
+    <div class="user-address">
+      <h2>Endereço</h2>
+      <div class="address-details">
+        <div class="detail">
+          <label>Rua:</label>
+          <span *ngIf="!editingUserAddress">{{ userAddress.logradouro || 'Não informado' }}</span>
+          <input *ngIf="editingUserAddress" [(ngModel)]="userAddress.logradouro" placeholder="Digite a rua" />
+        </div>
+        <div class="detail">
+          <label>Cidade:</label>
+          <span *ngIf="!editingUserAddress">{{ userAddress.cidade || 'Não informada' }}</span>
+          <input *ngIf="editingUserAddress" [(ngModel)]="userAddress.cidade" placeholder="Digite a cidade" />
+        </div>
+        <div class="detail">
+          <label>Estado:</label>
+          <span *ngIf="!editingUserAddress">{{ userAddress.estado || 'Não informado' }}</span>
+          <input *ngIf="editingUserAddress" [(ngModel)]="userAddress.estado" placeholder="Digite o estado" />
+        </div>
+        <div class="detail">
+          <label>CEP:</label>
+          <span *ngIf="!editingUserAddress">{{ userAddress.cep || 'Não informado' }}</span>
+          <input *ngIf="editingUserAddress" [(ngModel)]="userAddress.cep" placeholder="Digite o CEP" />
+        </div>
+        <div class="detail">
+          <label>Número:</label>
+          <span *ngIf="!editingUserAddress">{{ userAddress.numero || 'Não informado' }}</span>
+          <input *ngIf="editingUserAddress" [(ngModel)]="userAddress.numero" placeholder="Digite o número da casa" />
+        </div>
       </div>
-      <div class="detail">
-        <label>Cidade:</label>
-        <span *ngIf="!editingUserAddress">{{ userAddress.cidade || 'Não informada' }}</span>
-        <input *ngIf="editingUserAddress" [(ngModel)]="userAddress.cidade" placeholder="Digite a cidade" />
-      </div>
-      <div class="detail">
-        <label>Estado:</label>
-        <span *ngIf="!editingUserAddress">{{ userAddress.estado || 'Não informado' }}</span>
-        <input *ngIf="editingUserAddress" [(ngModel)]="userAddress.estado" placeholder="Digite o estado" />
-      </div>
-      <div class="detail">
-        <label>CEP:</label>
-        <span *ngIf="!editingUserAddress">{{ userAddress.cep || 'Não informado' }}</span>
-        <input *ngIf="editingUserAddress" [(ngModel)]="userAddress.cep" placeholder="Digite o CEP" />
-      </div>
-      <div class="detail">
-        <label>Número:</label>
-        <span *ngIf="!editingUserAddress">{{ userAddress.numero || 'Não informado' }}</span>
-        <input *ngIf="editingUserAddress" [(ngModel)]="userAddress.numero" placeholder="Digite o número da casa" />
-      </div>
+      <button *ngIf="!editingUserAddress" (click)="editingUserAddress = true">Editar Endereço</button>
+      <button *ngIf="editingUserAddress" (click)="editOrSaveAddress(user.id, userAddress)">Salvar</button>
     </div>
-    <button *ngIf="!editingUserAddress" (click)="editingUserAddress = true">Editar Endereço</button>
-    <button *ngIf="editingUserAddress" (click)="editOrSaveAddress(user.id, userAddress)">Salvar</button>
   </div>
-</div>

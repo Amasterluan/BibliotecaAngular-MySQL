@@ -22,20 +22,31 @@ export class UserProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Verifica se o usuário está logado
     this.userService.isLoggedIn.subscribe((status) => {
+      console.log('Status de login:', status);
       this.isLoggedIn = status;
+      
       if (this.isLoggedIn) {
-        this.loadUserData();
+        this.userService.currentUser.subscribe((data) => {
+          console.log('Dados do usuário recebidos:', data);
+          
+          if (!data) {
+            console.warn('Nenhum dado do usuário foi carregado!');
+            return;
+          }
+  
+          this.user = data;
+          console.log('Usuário carregado:', this.user);
+          
+          if (this.user.id) {
+            this.loadUserAddress(this.user.id);
+          } else {
+            console.warn('Usuário não tem ID válido!');
+          }
+        });
       } else {
         this.router.navigate(['/user-auth']);
       }
-    });
-  
-    this.userService.currentUser.subscribe((data) => {
-      console.log('Dados do usuário recebidos:', data);  // Verifique os dados recebidos
-      this.user = data;
-      console.log('Dados do usuário no componente:', this.user);  // Verifique se os dados são atribuídos corretamente
     });
   }
 
@@ -58,7 +69,7 @@ export class UserProfileComponent implements OnInit {
         console.error('Erro ao carregar o endereço:', error);
         // Verifica se a resposta de erro tem a mensagem "Endereço não encontrado"
         if (error.error.message === 'Endereço não encontrado para este usuário') {
-          alert('Endereço não encontrado. Você pode adicionar um endereço agora.');
+          console.log('Endereço não encontrado. Você pode adicionar um endereço agora.');
           // Você pode chamar um método para permitir o cadastro do endereço aqui
         } else {
           alert('Erro ao carregar o endereço!');
@@ -97,6 +108,7 @@ export class UserProfileComponent implements OnInit {
       (response: any) => {  // Define response como 'any' para evitar o erro
         console.log('Resposta do backend:', response);
         alert(response.message || 'Endereço atualizado com sucesso!');
+        this.editingUserAddress = false;
       },
       (error) => {
         console.error('Erro ao salvar endereço:', error);

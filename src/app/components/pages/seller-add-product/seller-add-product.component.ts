@@ -14,28 +14,34 @@ export class SellerAddProductComponent {
   constructor(private http: HttpClient, private router: Router) {}
 
   submit(formValues: any): void {
-    // Formata a data para o formato 'YYYY-MM-DD'
-    const dataFormatada = new Date(formValues.anoPublicacao).toISOString().split('T')[0];
-    
+    // Verifique se a data está válida antes de tentar formatá-la
+    const anoPublicacao = formValues.anoPublicacao;
+    const dataFormatada = anoPublicacao ? new Date(anoPublicacao).toISOString().split('T')[0] : null;
+  
+    if (!dataFormatada) {
+      this.addProductMessage = 'Por favor, forneça uma data válida.';
+      return;
+    }
+  
     // Enviar os dados do formulário para a API do back-end
     const bookData = {
-      imagem: formValues.imagemLivro, 
-      titulo_livro: formValues.nomeLivro, 
+      imagem: formValues.imagemLivro,
+      titulo_livro: formValues.nomeLivro,
       anopublicacao: dataFormatada,
       descricao: formValues.descricaoLivro,
-      estoque: parseInt(formValues.estoque, 10), 
-      preco: parseFloat(formValues.preco), 
-      nome_autor: formValues.nomeAutor, 
-      nome_genero: formValues.categoria, 
-      nome_editora: formValues.nomeEditora 
+      estoque: parseInt(formValues.estoque, 10),
+      preco: parseFloat(formValues.preco),
+      nome_autor: formValues.nomeAutor,
+      nome_genero: formValues.categoria,
+      nome_editora: formValues.nomeEditora
     };
-
+  
     // Envio dos dados para o back-end
     this.http.post('http://localhost:3000/api/products', bookData).subscribe(
       (response) => {
         this.addProductMessage = 'Livro adicionado com sucesso!';
         console.log('Livro adicionado:', response);
-
+  
         // Aguarda 2 segundos antes de redirecionar
         setTimeout(() => {
           this.router.navigate(['/listagem-livros']); // Substitua '/listagem-livros' pela rota da página de listagem de livros
@@ -47,4 +53,5 @@ export class SellerAddProductComponent {
       }
     );
   }
+  
 }

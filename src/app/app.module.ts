@@ -17,6 +17,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SellerUpdateProductComponent } from './components/pages/seller-update-product/seller-update-product.component';
 import { ProductDetailsComponent } from './components/pages/product-details/product-details.component';
 import { UserAuthComponent } from './components/pages/user-auth/user-auth.component';
+import { UserProfileComponent } from './components/pages/user-profile/user-profile.component';
+import { UserFavoriteComponent } from './components/pages/user-favorite/user-favorite.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { UserAuthComponent } from './components/pages/user-auth/user-auth.compon
     SellerUpdateProductComponent,
     ProductDetailsComponent,
     UserAuthComponent,
+    UserProfileComponent,
+    UserFavoriteComponent,
   ],
   imports: [
     BrowserModule,

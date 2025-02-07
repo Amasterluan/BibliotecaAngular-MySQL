@@ -19,7 +19,7 @@
                 </a>
                 <div class="product-details">
                     <h6 class="name-header">{{ item.title }}</h6>
-                    <h6 class="preco-product">Preço: {{ item.price | currency }}</h6>
+                    <h6 class="preco-product">Preço: {{ item.price | currency: 'BRL': true: '1.2-2' }}</h6>
                     <h6 class="autor-product">Autor: {{ item.author }}</h6>
                 </div>
                 <div class="product-categoria">

@@ -21,21 +21,16 @@ export class SellerUpdateProductComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Pega o id do produto na URL
     const productId = this.route.snapshot.paramMap.get('id');
   
     if (productId) {
-      // Carrega os dados do produto para edição
       this.productService.getProductId(productId).subscribe(
         (data) => {
           this.product = data;
-  
-          // Verifica se o ano de publicação está presente e no formato correto
+          console.log('Produto carregado:', this.product);  // Verifique se o produto é carregado corretamente
           if (this.product.publicationYear) {
-            // Ajusta para o formato correto 'YYYY-MM-DD'
             this.product.publicationYear = this.product.publicationYear.split('T')[0];
           }
-  
           this.loading = false;
         },
         (error) => {
@@ -48,34 +43,39 @@ export class SellerUpdateProductComponent implements OnInit {
       this.loading = false;
     }
   }
-  
-
   onUpdateProduct(form: NgForm): void {
-    if (form.valid) {
-      // Verifica se a data é válida e formata para 'YYYY-MM-DD'
-      const dataFormatada = new Date(this.product.publicationYear).toISOString().split('T')[0];
-      
-      // Atualiza os dados do produto, incluindo a data formatada
-      const updatedProduct = {
-        ...this.product,
-        publicationYear: dataFormatada, // Garante que a data esteja no formato correto
-      };
-  
-      // Envia os dados do produto para o backend
-      this.productService.updateProduct(this.product.id, updatedProduct).subscribe(
-        (response) => {
-          this.productMessage = 'Produto atualizado com sucesso!';
-          this.router.navigate(['/products']);
-        },
-        (error) => {
-          this.productMessage = 'Erro ao atualizar o produto. ' + (error.message || 'Tente novamente.');
-          console.error('Erro ao atualizar produto:', error);
-        }
-      );
-    } else {
-      this.productMessage = 'Por favor, preencha todos os campos.';
+    if (form.invalid) {
+      return;
     }
+    this.loading = true;
+  
+    // Map frontend fields to backend fields
+    const updatedProduct = {
+      imagem: this.product.image,
+      titulo_livro: this.product.title,
+      anopublicacao: this.product.publicationYear,
+      descricao: this.product.description,
+      estoque: this.product.stock,
+      preco: this.product.price,
+      nome_autor: this.product.author,
+      nome_genero: this.product.genre,
+      nome_editora: this.product.publisher
+    };
+  
+    console.log('Dados mapeados para atualização:', updatedProduct); // Log the mapped data
+  
+    this.productService.updateProduct(this.product.id, updatedProduct).subscribe(
+      (response) => {
+        this.productMessage = 'Produto atualizado com sucesso!';
+        this.loading = false;
+        this.router.navigate(['/seller-home']);
+      },
+      (error) => {
+        this.productMessage = 'Erro ao atualizar o produto!';
+        this.loading = false;
+      }
+    );
   }
   
-  
+    
 }

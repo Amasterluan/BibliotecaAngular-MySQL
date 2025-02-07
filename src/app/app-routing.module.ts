@@ -8,6 +8,8 @@ import { SellerAddProductComponent } from './components/pages/seller-add-product
 import { SellerUpdateProductComponent } from './components/pages/seller-update-product/seller-update-product.component';
 import { ProductDetailsComponent } from './components/pages/product-details/product-details.component';
 import { UserAuthComponent } from './components/pages/user-auth/user-auth.component';
+import { UserProfileComponent } from './components/pages/user-profile/user-profile.component';
+import { UserFavoriteComponent } from './components/pages/user-favorite/user-favorite.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -16,7 +18,9 @@ const routes: Routes = [
   {path: 'seller-home', component: SellerHomeComponent},
   {path: 'seller-add-product', component: SellerAddProductComponent},
   {path: 'seller-update-product/:id', component: SellerUpdateProductComponent},
-  {path: 'details/:productId', component: ProductDetailsComponent},
+  {path: 'details/:id', component: ProductDetailsComponent},
+  { path: 'user-profile', component: UserProfileComponent }, // Rota para o perfil do usuário
+  { path: 'favorite', component: UserFavoriteComponent } // Rota para a página de favoritos
 ];
 
 @NgModule({

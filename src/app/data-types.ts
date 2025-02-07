@@ -1,14 +1,3 @@
-export interface SingUp{
-    name:string,
-    password:string,
-    email:string
-}
-
-export interface login{
-    email:string,
-    password:string,
-}
-
 export interface product {
   id: number;                 // 'idlivros'
   image: string;              // Campo para a imagem do livro
@@ -22,4 +11,24 @@ export interface product {
   publisher: string;          // Nome da editora (não está sendo usado no HTML atual)
 }
 
+//
+export interface User {
+  idusuarios: number;        // Identificador único do usuário
+  nome_user: string | null;   // Nome do usuário
+  email_user: string;        // Email do usuário (obrigatório)
+  senha_user: string;        // Senha do usuário (deve ser armazenada de forma segura)
+  cpf_user: string | null;   // CPF do usuário (opcional)
+  telefone_user: string | null; // Telefone do usuário (opcional)
+}
+
+//
+export interface Address {
+  idenderecos: number;      // Identificador único do endereço
+  logradouro: string | null; // Logradouro do endereço
+  numero: string | null;    // Número do endereço
+  cep: string | null;       // CEP do endereço (alterado para string para incluir o formato com hífen)
+  cidade: string | null;    // Cidade do endereço
+  estado: string | null;    // Estado do endereço
+  idusuarios: number;      // ID do usuário associado a esse endereço
+}
 

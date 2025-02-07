@@ -36,8 +36,10 @@ export class ProductsService {
 
   // Método para atualizar um produto
   updateProduct(id: string, productData: any): Observable<any> {
+    console.log('Atualizando produto com os dados:', productData);  // Verifique os dados que estão sendo enviados
     return this.http.put(`${this.apiUrl}/${id}`, productData);
   }
+  
 
   searchProducts(query: string): Observable<product[]> {
     return this.http.get<product[]>(`${this.apiUrl}/search?q=${query}`);

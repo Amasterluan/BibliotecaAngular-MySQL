@@ -1,3 +1,5 @@
+//node --watch backend/server.js
+
 // backend/server.js
 const express = require('express');
 const cors = require('cors');

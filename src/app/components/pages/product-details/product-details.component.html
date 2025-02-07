@@ -1,43 +1,44 @@
-<div class="container" *ngIf="productData">
-      <div class="product-details">
-        <div class="product-gallery">
-          <img src="" alt="Fone de Ouvido Bluetooth" />
-          <div class="gallery-thumbnails">
-          </div>
-        </div>
-        <div class="product-info">
-          <h2>productData.nomeLivro</h2>
-          <p class="price">R$ </p>
-          <p class="author-name">productData.nomeAutor</p>
-          <p class="product-description"> productData.descricaoLivro</p>
-          <div class="product-options">
-            <label for="quantity">Quantidade:</label>
-            <input type="number" id="quantity" value="{{productQuantity}}" />
-          </div>
-          <div class="buttons">
-            <button *ngIf="!removeCart" class="add-to-cart">
-              <i class="fas fa-shopping-cart"></i> Adicionar ao carrinho
-            </button>
-            <button *ngIf="removeCart" class="add-to-cart" >
-              <i class="fas fa-shopping-cart"></i> Remover do carrinho
-            </button>
-            <button class="add-to-wishlist">
-              <i class="fas fa-heart"></i> Adicionar à lista de desejos
-            </button>
-          </div>
-        </div>
+<div class="container" *ngIf="!loading && product">
+  <div class="product-details">
+    <div class="product-gallery">
+      <img src="{{product.image}}" alt="Fone de Ouvido Bluetooth" />
+      <div class="gallery-thumbnails">
       </div>
-      <div class="product-specs">
-        <ul class="tabs">
-          <li><i class="name_details"></i> Detalhes</li>
-        </ul>
-        <div class="specs-content">
-          <div>
-            <p><strong>Nome da Obra: </strong>productData.nomeLivro</p>
-            <p><strong>Nome do Autor (a): </strong>productData.nomeAutor</p>
-            <p><strong>Categória: </strong>productData.categoria</p>
-            <p><strong>Descrição: </strong><br>productData.descricaoLivro</p>
-          </div>
-        </div>
+    </div>
+    <div class="product-info">
+      <h2>{{product.title}}</h2>
+      <p class="price"> {{ product.price | currency: 'BRL': true: '1.2-2' }}</p>
+      <p class="author-name">{{product.author}}</p>
+      <p class="product-description"> {{product.description}}</p>
+      <div class="product-options">
+        <label for="quantity">Quantidade:</label>
+        <input type="number" id="quantity" value="1" />
       </div>
+      <div class="buttons">
+        <button class="add-to-cart">
+          <i class="fas fa-shopping-cart"></i> Adicionar ao carrinho
+        </button>
+        <button class="add-to-cart">
+          <i class="fas fa-shopping-cart"></i> Remover do carrinho
+        </button>
+        <button class="add-to-wishlist">
+          <i class="fas fa-heart"></i> Adicionar à lista de desejos
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="product-specs">
+    <ul class="tabs">
+      <li><i class="name_details"></i> Detalhes</li>
+    </ul>
+    <div class="specs-content">
+      <div>
+        <p><strong>Nome da Obra: </strong>{{product.title}}</p>
+        <p><strong>Nome do Autor (a): </strong>{{product.author}}</p>
+        <p><strong>Ano de Publicação: </strong>{{ product.year | date: 'dd-MM-yyyy' }}</p>
+        <p><strong>Categória: </strong>{{product.genre}}</p>
+        <p><strong>Descrição: </strong><br>{{product.description}}</p>
+      </div>
+    </div>
+  </div>
 </div>

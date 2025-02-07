@@ -18,22 +18,34 @@
           #searchInput
           id="txtBusca"
           placeholder="Buscar..."
-
         />
         <button id="btnBusca">
           Buscar
         </button>
-
       </div>
 
       <!-- Menu de Navegação Dinâmico -->
-      <div class="menu"><nav>
-        <a routerLink="/"><b>Home</b></a>
-        <a routerLink="/seller-auth"><b>Vendedores</b></a>
-        <a routerLink="/user-auth"><b>Cliente</b></a>
-        <a routerLink="/seller-add-product"><b>Add Livro</b></a>
-        <a routerLink="/seller-home"><b>Lista de Livros</b></a>
-      </nav>
+      <div class="menu">
+        <nav>
+          <a routerLink="/"><b>Home</b></a>
+          <a routerLink="/seller-auth"><b>Vendedores</b></a>
+
+          <!-- Exibe o botão de "Cliente" apenas quando não estiver logado -->
+          <ng-container *ngIf="!isLoggedIn">
+            <a routerLink="/user-auth"><b>Cliente</b></a>
+          </ng-container>
+
+
+          <!-- Botões dinâmicos, visíveis apenas se o usuário estiver logado -->
+          <ng-container *ngIf="isLoggedIn">
+            
+            <a routerLink="/seller-add-product"><b>Add Livro</b></a>
+            <a routerLink="/seller-home"><b>Lista de Livros</b></a>
+            <a routerLink="/user-profile"><b>Perfil</b></a>
+            <a routerLink="/favorites"><b>Favoritos</b></a>
+            <a (click)="logout()"><b>Sair</b></a>
+          </ng-container>
+        </nav>
       </div>
     </nav>
   </div>

@@ -1,8 +1,8 @@
 <div class="add-product">
-  <div class="background">  
+  <div class="background">
     <div class="page">
       <div class="form-and-image">
-        <div class="image-container">
+        <div class="image-container" *ngIf="product">
           <div class="image-box">
             <img [src]="product.image" alt="Imagem do Livro" class="book-image"/>
             <div class="image-text">
@@ -13,7 +13,7 @@
           </div>
         </div>
 
-        <form #addProduct="ngForm" (ngSubmit)="onUpdateProduct(addProduct)" class="formLogin">
+        <form #addProduct="ngForm" (ngSubmit)="onUpdateProduct(addProduct.value)" class="formLogin">
           <p class="message-p">{{ productMessage }}</p>
           <h1>Atualizar Produto</h1>
 

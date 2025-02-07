@@ -16,16 +16,13 @@ export class UserAuthComponent {
     private router: Router
   ) {}
 
-  ngOnInit() {
-
-  }
-
-
   signup(userData: any): void {
+    console.log('Dados do formulário: ', userData);
     this.userService.userSignup(userData).subscribe(
       (response) => {
         alert("Cadastro realizado com sucesso!");
-        this.showLogin = true; // Alterna para a tela de login após o cadastro
+        this.userService.handleAuth(response); // Já redireciona para a página principal após o login
+        this.showLogin = true;
       },
       (error) => {
         console.error("Erro ao cadastrar usuário:", error);
@@ -39,14 +36,11 @@ export class UserAuthComponent {
       (response) => {
         this.userService.handleAuth(response);
         alert("Login realizado com sucesso!");
-        this.router.navigate(['/dashboard']); // Redireciona para a página de dashboard
       },
       (error) => {
-        this.authError = "Credenciais inválidas. Tente novamente."; // Mensagem de erro
+        this.authError = "Credenciais inválidas. Tente novamente."; 
         console.error("Erro ao realizar login:", error);
       }
     );
   }
-  
-  
 }

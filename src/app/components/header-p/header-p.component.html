@@ -30,19 +30,19 @@
           <a routerLink="/"><b>Home</b></a>
           <!--<a routerLink="/seller-auth"><b>Vendedores</b></a> -->
 
-          <!-- Exibe o botão de "Cliente" apenas quando não estiver logado -->
+          <!-- Mostra para todos -->
           <ng-container *ngIf="!isLoggedIn">
             <a routerLink="/user-auth"><b>Login/SingUp</b></a>
           </ng-container>
 
 
-          <!-- Botões dinâmicos, visíveis apenas se o usuário estiver logado -->
+          <!-- Mostra para usuario logado -->
           <ng-container *ngIf="isLoggedIn">
             
             <a routerLink="/seller-add-product"><b>Add Livro</b></a>
             <a routerLink="/seller-home"><b>Lista de Livros</b></a>
             <a routerLink="/user-profile"><b>Perfil</b></a>
-            <a routerLink="/favorites"><b>Favoritos</b></a>
+            <a routerLink="/favorite"><b>Favoritos</b></a>
             <a (click)="logout()"><b>Sair</b></a>
           </ng-container>
         </nav>

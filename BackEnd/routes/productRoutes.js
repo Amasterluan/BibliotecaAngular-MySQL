@@ -9,6 +9,7 @@ router.get("/products", productController.getProducts);
 // Rota para obter um produto pelo ID
 router.get("/products/:id", productController.getProductById);
 
+//Rota para atualizar o produto
 router.put("/products/:id", productController.updateProduct);
 
 // Rota para adicionar um novo produto

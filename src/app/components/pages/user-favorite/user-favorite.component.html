@@ -1,1 +1,13 @@
-<p>user-favorite works!</p>
+<div class="container">
+    <h1>📚 Meus Livros Favoritos</h1>
+    <div class="book-grid">
+      <div class="book-card" *ngFor="let book of favoriteBooks">
+        <img [src]="book.imagem" alt="Capa do Livro">
+        <h2>{{ book.titulo_livro }}</h2>
+        <p>Autor: {{ book.nome_autor }}</p>
+        <button (click)="viewBook(book.idlivros)">Ver Mais</button>
+        <button (click)="deleteBook(book.idfavoritos)">Deletar</button>
+      </div>
+    </div>
+  </div>
+  

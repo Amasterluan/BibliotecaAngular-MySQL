@@ -33,7 +33,7 @@ import { UserFavoriteComponent } from './components/pages/user-favorite/user-fav
     ProductDetailsComponent,
     UserAuthComponent,
     UserProfileComponent,
-    UserFavoriteComponent,
+    UserFavoriteComponent
   ],
   imports: [
     BrowserModule,

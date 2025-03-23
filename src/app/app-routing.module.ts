@@ -19,8 +19,8 @@ const routes: Routes = [
   {path: 'seller-add-product', component: SellerAddProductComponent},
   {path: 'seller-update-product/:id', component: SellerUpdateProductComponent},
   {path: 'details/:id', component: ProductDetailsComponent},
-  { path: 'user-profile', component: UserProfileComponent }, // Rota para o perfil do usuário
-  { path: 'favorite', component: UserFavoriteComponent } // Rota para a página de favoritos
+  { path: 'user-profile', component: UserProfileComponent }, 
+  { path: 'favorite', component: UserFavoriteComponent } 
 ];
 
 @NgModule({

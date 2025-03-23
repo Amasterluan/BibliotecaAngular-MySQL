@@ -28,23 +28,25 @@
       <div class="menu">
         <nav>
           <a routerLink="/"><b>Home</b></a>
-          <!--<a routerLink="/seller-auth"><b>Vendedores</b></a> -->
-
-          <!-- Mostra para todos -->
           <ng-container *ngIf="!isLoggedIn">
             <a routerLink="/user-auth"><b>Login/SingUp</b></a>
           </ng-container>
 
-
-          <!-- Mostra para usuario logado -->
           <ng-container *ngIf="isLoggedIn">
-            
             <a routerLink="/seller-add-product"><b>Add Livro</b></a>
             <a routerLink="/seller-home"><b>Lista de Livros</b></a>
             <a routerLink="/user-profile"><b>Perfil</b></a>
             <a routerLink="/favorite"><b>Favoritos</b></a>
             <a (click)="logout()"><b>Sair</b></a>
           </ng-container>
+
+          <!-- Carrinho -->
+          <div class="cart-icon" *ngIf="isLoggedIn">
+            <a routerLink="/cart">
+              <fa-icon [icon]="faShoppingCart"></fa-icon> <!-- Ícone de carrinho -->
+              <span class="cart-count">{{ cartItemCount }}</span>
+            </a>
+          </div>
         </nav>
       </div>
     </nav>

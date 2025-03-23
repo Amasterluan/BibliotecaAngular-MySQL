@@ -124,3 +124,28 @@ header {
 .suggested-result li a:hover {
   color: #00B5B7;
 }
+
+/* CSS do carrinho */
+
+.cart-icon {
+  position: relative;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.cart-icon img {
+  width: 40px;
+  height: 40px;
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  font-size: 14px;
+  border-radius: 50%;
+  padding: 5px;
+}
+

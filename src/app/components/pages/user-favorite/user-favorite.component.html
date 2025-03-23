@@ -1,13 +1,28 @@
 <div class="container">
-    <h1>📚 Meus Livros Favoritos</h1>
-    <div class="book-grid">
-      <div class="book-card" *ngFor="let book of favoriteBooks">
-        <img [src]="book.imagem" alt="Capa do Livro">
-        <h2>{{ book.titulo_livro }}</h2>
-        <p>Autor: {{ book.nome_autor }}</p>
-        <button (click)="viewBook(book.idlivros)">Ver Mais</button>
-        <button (click)="deleteBook(book.idfavoritos)">Deletar</button>
-      </div>
-    </div>
-  </div>
-  
+  <h1>📚 Meus Livros Favoritos</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Imagem do Livro</th>
+        <th>Título do Livro</th>
+        <th>Autor</th>
+        <th>Preço</th>
+        <th>Descrição</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of favoriteBooks">
+        <td><img [src]="book.imagem" alt="Capa do Livro"></td>
+        <td>{{ book.titulo_livro }}</td>
+        <td>{{ book.nome_autor }}</td>
+        <td>R$ {{ book.preco }}</td>
+        <td>{{ book.descricao }}</td>
+        <td>
+          <a [routerLink]="['/details/' + book.idlivros]" class="buttonLink">Ver Mais</a>
+          <fa-icon [icon]="icon" (click)="deleteBook(book.idfavoritos)"></fa-icon>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -25,12 +25,22 @@ const addFavorite = (req, res) => {
 // Obter todos os favoritos de um usuário
 const getFavoritesByUser = (req, res) => {
   const { idusuarios } = req.params;
+  console.log('ID do Usuário:', idusuarios);
 
   db.query(
-    `SELECT f.idfavoritos, l.idlivros, l.imagem, l.titulo_livro, l.anopublicacao, l.descricao, l.preco, l.nome_autor, l.nome_genero, l.nome_editora 
-     FROM favoritos f
-     JOIN livros l ON f.idlivros = l.idlivros
-     WHERE f.idusuarios = ?`,
+    `SELECT 
+  f.idfavoritos,
+  l.idlivros,
+  l.titulo_livro,
+  l.imagem,
+  l.nome_autor,
+  l.preco,
+  l.descricao
+FROM 
+  favoritos f
+JOIN livros l ON f.idlivros = l.idlivros
+WHERE 
+  f.idusuarios = ?;`,
     [idusuarios],
     (err, results) => {
       if (err) {

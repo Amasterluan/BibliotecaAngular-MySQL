@@ -4,11 +4,12 @@ const router = express.Router();
 const favoriteController = require('../controllers/favoriteController');
 
 // Rota para pegar o favorito do usuario
-router.get('/favorite/:id', favoriteController.getFavoritesByUser);
+router.get('/favorite/:idusuarios', favoriteController.getFavoritesByUser);
 
 // Rota para adicionar o produto aos favoritos 
-router.put('/favorite', favoriteController.addFavorite);
+router.post('/favorite', favoriteController.addFavorite);
 
 // Rota para deletar um livro dos favoritos
-router.delete("favorite/:id", favoriteController.removeFavorite)
+router.delete('/favorite/:idfavoritos', favoriteController.removeFavorite);
+
 module.exports = router;

@@ -25,6 +25,12 @@ export class UserService {
     }
   }
 
+  // Retorna o ID do usuário logado
+  getUserId(): number | null {
+    const user = this.currentUser.value;
+    return user ? user.id : null; // Retorna o ID se o usuário estiver logado, senão retorna null
+  }
+
   // Cadastro de usuário
   userSignup(data: any) {
     return this.http.post(`${this.apiUrl}/signup`, data);
@@ -71,8 +77,6 @@ export class UserService {
   saveUserAddress(userId: number, addressData: any) {
     return this.http.put(`http://localhost:3000/api/users/${userId}/address`, addressData);
   }
-
-  // PUT porque estamos fazendo um update ou insert
 }
   
 

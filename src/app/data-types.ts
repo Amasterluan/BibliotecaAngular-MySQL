@@ -9,6 +9,7 @@ export interface product {
   author: string;             // Nome do autor
   genre: string;              // Gênero do livro
   publisher: string;          // Nome da editora (não está sendo usado no HTML atual)
+  quantidade: number;
 }
 
 //
@@ -30,5 +31,26 @@ export interface Address {
   cidade: string | null;    // Cidade do endereço
   estado: string | null;    // Estado do endereço
   idusuarios: number;      // ID do usuário associado a esse endereço
+}
+
+//
+
+export interface FavoriteBook {
+  idfavoritos: number;
+  idlivros: number;
+  imagem: string;
+  titulo_livro: string;
+  nome_autor: string;
+  descricao: string;
+  preco: number;
+}
+
+//
+export interface CartItem {
+  idlivros: number;   // ID do livro
+  titulo_livro: string;  // Nome do livro
+  quantidade: number;  // Quantidade do livro no carrinho
+  total: number;  // Total (quantidade * preço)
+  preco: number;  // Preço do livro
 }
 

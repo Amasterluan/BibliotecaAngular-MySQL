@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FavoriteService {
-  private apiUrl = 'http://localhost:3000/api/favorite';
+  private apiUrl = 'http://localhost:3000/api/favorite'; 
 
   constructor(private http: HttpClient) {}
 
@@ -21,4 +21,9 @@ export class FavoriteService {
   getFavorites(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
+
+  getFavoritesByUser(idusuarios: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${idusuarios}`);
+  }  
+  
 }

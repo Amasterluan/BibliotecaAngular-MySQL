@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FavoriteService } from '../../../services/favorite.service';
 import { Router } from '@angular/router';
+import { FavoriteBook } from '../../../data-types';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 
-interface FavoriteBook {
-  idfavoritos: number;
-  idlivros: number;
-  imagem: string;
-  titulo_livro: string;
-  nome_autor: string;
-}
 
 @Component({
   selector: 'app-user-favorite',
@@ -18,15 +13,28 @@ interface FavoriteBook {
 export class UserFavoriteComponent implements OnInit{
   favoriteBooks: FavoriteBook[] = [];
   
+  icon = faTrash;
+  EditIcon = faEdit;
+
   constructor(private favoriteService: FavoriteService, private router: Router) {}
 
   ngOnInit(): void {
-    this.loadFavorites();
+    const user = localStorage.getItem('user');
+    if (user) {
+      const parsedUser = JSON.parse(user);
+      const idusuarios = parsedUser.id;
+      console.log('ID do Usuário no LocalStorage:', idusuarios);
+      this.loadFavorites(idusuarios);
+    } else {
+      console.error('ID do usuário não encontrado no localStorage');
+    }
   }
 
-  loadFavorites(): void {
-    this.favoriteService.getFavorites().subscribe(
+  loadFavorites(idusuarios: number): void {
+    this.favoriteService.getFavoritesByUser(idusuarios).subscribe(
       (books: FavoriteBook[]) => {
+        console.log('Livros Favoritos:', books);
+        console.log('usuario:', idusuarios)
         this.favoriteBooks = books;
       },
       error => {
@@ -34,6 +42,7 @@ export class UserFavoriteComponent implements OnInit{
       }
     );
   }
+  
 
   viewBook(id: number): void {
     this.router.navigate(['/products', id]);

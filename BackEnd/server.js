@@ -12,10 +12,14 @@ app.use(express.json());
 // Importando as rotas
 const productRoutes = require('./routes/productRoutes');
 const userRoutes = require('./routes/userRoutes');
+const favoriteRoutes = require('./routes/favoriteRoutes');
+const cartRoutes = require('./routes/cartRoutes');
 
 // Usando as rotas
 app.use('/api', productRoutes);
 app.use('/api', userRoutes);
+app.use('/api', favoriteRoutes);
+app.use('/api', cartRoutes);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {

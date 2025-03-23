@@ -12,14 +12,14 @@
       <p class="product-description"> {{product.description}}</p>
       <div class="product-options">
         <label for="quantity">Quantidade:</label>
-        <input type="number" id="quantity" value="1" />
+        <input type="number" id="quantity" [(ngModel)]="quantity" value="1" />
       </div>
       <div class="buttons">
-        <button class="add-to-cart">
+        <button class="add-to-cart" (click)="addToCart(product)">
           <i class="fas fa-shopping-cart"></i> Adicionar ao carrinho
         </button>
-        <button class="add-to-cart">
-          <i class="fas fa-shopping-cart"></i> Remover do carrinho
+        <button class="remove-from-cart" (click)="removeFromCart(product)">
+          <i class="fas fa-trash-alt"></i> Remover do carrinho
         </button>
         <button class="add-to-wishlist" (click)="addToFavorites(product.id)">
           <i class="fas fa-heart"></i> Adicionar à lista de desejos

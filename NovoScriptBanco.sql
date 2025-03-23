@@ -90,6 +90,7 @@ CREATE TABLE IF NOT EXISTS `bancolivraria`.`compras` (
   `idusuarios` INT NOT NULL,
   `idformas_pagamentos` INT NOT NULL,
   `idlivros` INT NOT NULL,
+  `quantidade` INT NOT NULL,
   PRIMARY KEY (`idcompras`, `idusuarios`, `idformas_pagamentos`, `idlivros`),
   INDEX `fk_compras_usuarios1_idx` (`idusuarios` ASC) VISIBLE,
   INDEX `fk_compras_formas_pagamentos1_idx` (`idformas_pagamentos` ASC) VISIBLE,
@@ -144,7 +145,8 @@ INSERT INTO `livros` (`idlivros`, `imagem`, `titulo_livro`, `anopublicacao`, `de
 (5, 'https://m.media-amazon.com/images/I/91Q2QLxT6BL._SL1500_.jpg', 'Dom Quixote', '1605-01-16', 'As aventuras do cavaleiro errante Dom Quixote e seu fiel escudeiro, Sancho Pança.', 12, 65, 'Miguel de Cervantes', 'Clássico', 'Penguin');
 
 select * from livros;
-
+select * from enderecos;
+select * from usuarios;
 
 select * from usuarios;
 SET SQL_MODE=@OLD_SQL_MODE;

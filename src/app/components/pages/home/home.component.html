@@ -27,8 +27,9 @@
                 </div>
                 <div class="product-footer">
                     <a [routerLink]="'/details/' + item.id">+ Detalhes</a>
-                    <a href="#">+ Carrinho</a>
+                    <a (click)="addToCart(item)">+ Carrinho</a> <!-- Conecte ao método de adicionar ao carrinho -->
                 </div>
+                
             </div>
         </div>
     </div>

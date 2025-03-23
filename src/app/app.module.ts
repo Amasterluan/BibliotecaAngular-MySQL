@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderPComponent } from './components/header-p/header-p.component';
+import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { SellerAuthComponent } from './components/pages/seller-auth/seller-auth.component';
@@ -19,11 +19,12 @@ import { ProductDetailsComponent } from './components/pages/product-details/prod
 import { UserAuthComponent } from './components/pages/user-auth/user-auth.component';
 import { UserProfileComponent } from './components/pages/user-profile/user-profile.component';
 import { UserFavoriteComponent } from './components/pages/user-favorite/user-favorite.component';
+import { CartComponent } from './components/pages/cart/cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderPComponent,
+    HeaderComponent,
     FooterComponent,
     HomeComponent,
     SellerAuthComponent,
@@ -33,7 +34,8 @@ import { UserFavoriteComponent } from './components/pages/user-favorite/user-fav
     ProductDetailsComponent,
     UserAuthComponent,
     UserProfileComponent,
-    UserFavoriteComponent
+    UserFavoriteComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

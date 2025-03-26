@@ -1,0 +1,72 @@
+<div class="book-page">
+  <div class="filters">
+    <h3>Filtrar por:</h3>
+
+    <!-- Autor -->
+    <div class="filter-group">
+      <label>Autor</label>
+      <select [(ngModel)]="selectedAuthor" (change)="applyFilters()">
+        <option value="">Todos</option>
+        <option *ngFor="let autor of autores" [value]="autor">{{ autor }}</option>
+      </select>
+    </div>
+
+    <!-- Categoria -->
+    <div class="filter-group">
+      <label>Categoria</label>
+      <select [(ngModel)]="selectedCategory" (change)="applyFilters()">
+        <option value="">Todas</option>
+        <option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria }}</option>
+      </select>
+    </div>
+
+    <!-- Classificação mínima -->
+    <div class="filter-group">
+      <label>Classificação mínima</label>
+      <select [(ngModel)]="minRating" (change)="applyFilters()">
+        <option value="">Qualquer</option>
+        <option *ngFor="let r of ratings" [value]="r">{{ r }} estrelas+</option>
+      </select>
+    </div>
+
+    <!-- Preço -->
+    <div class="filter-group">
+      Preço
+      <div *ngFor="let faixa of faixasPreco">
+        <label><input type="radio" name="preco" [value]="faixa.value" [(ngModel)]="selectedPriceRange"
+          (change)="applyFilters()" />
+        {{ faixa.label }} </label>
+      </div>
+    
+    </div>
+
+    <!-- Ordenar -->
+    <div class="filter-group">
+      <label>Ordenar por</label>
+      <select [(ngModel)]="sortOption" (change)="applyFilters()">
+        <option value="">Padrão</option>
+        <option value="priceAsc">Preço: Menor para Maior</option>
+        <option value="priceDesc">Preço: Maior para Menor</option>
+        <option value="az">Título A-Z</option>
+        <option value="za">Título Z-A</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="book-list">
+    <div *ngFor="let livro of filteredBooks" class="book-card">
+      <a [routerLink]="'/details/' + livro.id">
+        <img [src]="livro.image" [alt]="livro.title">
+      </a>
+      <h4>{{ livro.title }}</h4>
+      <p><strong>Autor:</strong> {{ livro.author }}</p>
+      <p><strong>Categoria:</strong> {{ livro.genre }}</p>
+      <p><strong>Preço:</strong> {{ livro.price | currency:'BRL':true }}</p>
+
+      <div class="book-actions">
+        <button (click)="verDetalhes(livro.id)">+ Detalhes</button>
+        <button (click)="adicionarAoCarrinho(livro)">+ Carrinho</button>
+      </div>
+    </div>
+  </div>
+</div>

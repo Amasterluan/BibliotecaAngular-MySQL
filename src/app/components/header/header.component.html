@@ -18,16 +18,25 @@
           #searchInput
           id="txtBusca"
           placeholder="Buscar..."
+          [(ngModel)]="searchTerm"
+          (input)="buscarSugestoes()"
         />
-        <button id="btnBusca">
-          Buscar
-        </button>
+        <button id="btnBusca" (click)="buscarLivros()">Buscar</button>
+      
+        <!-- Sugestões -->
+        <ul *ngIf="sugestoes.length > 0" class="sugestoes-lista">
+          <li *ngFor="let sugestao of sugestoes" (click)="selecionarSugestao(sugestao)">
+            {{ sugestao.title }}
+          </li>
+        </ul>
       </div>
+      
 
       <!-- Menu de Navegação Dinâmico -->
       <div class="menu">
         <nav>
           <a routerLink="/"><b>Home</b></a>
+          <a routerLink="/books"><b>Livros</b></a>
           <ng-container *ngIf="!isLoggedIn">
             <a routerLink="/user-auth"><b>Login/SingUp</b></a>
           </ng-container>

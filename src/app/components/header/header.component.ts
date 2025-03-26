@@ -3,6 +3,10 @@ import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { CartService } from '../../services/cart.service';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { ProductsService } from '../../services/products.service'; 
+import { product } from '../../data-types';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +15,12 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 })
 export class HeaderComponent implements OnInit {
 
+  private searchTerms = new Subject<string>();
+
   faShoppingCart = faShoppingCart;
+
+  searchTerm: string = '';
+  sugestoes: product[] = [];
   
   isLoggedIn: boolean = false;
   cartItemCount: number = 0; // Quantidade de itens no carrinho
@@ -19,7 +28,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService,
-    private cartService: CartService // Injeção do serviço de carrinho
+    private cartService: CartService,
+    private productService: ProductsService
   ) {}
 
   ngOnInit(): void {
@@ -43,7 +53,52 @@ export class HeaderComponent implements OnInit {
         this.cartItemCount = 0;
       }
     });
+
+    this.searchTerms.pipe(
+      debounceTime(300),        // espera 300ms após cada pressionamento de tecla
+      distinctUntilChanged()    // ignora se o termo não mudou
+    ).subscribe(term => {
+      this.buscarSugestoes();
+    });
   }
+
+ 
+  buscarSugestoes() {
+    if (!this.searchTerm.trim()) {
+      this.sugestoes = [];
+      return;
+    }
+  
+    console.log('Enviando busca por:', this.searchTerm);
+    
+    this.productService.searchProducts(this.searchTerm).subscribe({
+      next: (resultados) => {
+        console.log('Resultados recebidos:', resultados);
+        this.sugestoes = resultados;
+      },
+      error: (erro) => {
+        console.error('Erro completo:', erro);
+        console.log('Status:', erro.status);
+        console.log('Mensagem:', erro.message);
+        console.log('URL:', erro.url);
+        this.sugestoes = [];
+      }
+    });
+  }
+  
+  selecionarSugestao(livro: product) {
+    this.router.navigate(['/details', livro.id]);
+    this.sugestoes = [];
+    this.searchTerm = '';
+  }
+
+  buscarLivros() {
+    if (this.searchTerm.trim()) {
+      this.router.navigate(['/books'], { queryParams: { q: this.searchTerm } });
+      this.sugestoes = [];
+    }
+  }
+  
 
   // Carregar a quantidade de itens no carrinho
   loadCartItems(idusuario: number) {

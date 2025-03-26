@@ -3,6 +3,9 @@ const express = require('express');
 const router = express.Router();
 const productController = require('../controllers/productController');
 
+// Rota de busca
+router.get('/search', productController.searchProducts); 
+
 // Rota para obter todos os produtos
 router.get("/products", productController.getProducts);
 
@@ -17,5 +20,7 @@ router.post("/products", productController.addProduct);
 
 // Rota para deletar um produto
 router.delete("/products/:id", productController.deleteProduct);
+
+
 
 module.exports = router;

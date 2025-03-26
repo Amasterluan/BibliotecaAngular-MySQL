@@ -10,6 +10,8 @@ export interface product {
   genre: string;              // Gênero do livro
   publisher: string;          // Nome da editora (não está sendo usado no HTML atual)
   quantidade: number;
+  idioma: string;
+  classificacao: number; // de 1 a 5
 }
 
 //

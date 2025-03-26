@@ -20,6 +20,8 @@ import { UserAuthComponent } from './components/pages/user-auth/user-auth.compon
 import { UserProfileComponent } from './components/pages/user-profile/user-profile.component';
 import { UserFavoriteComponent } from './components/pages/user-favorite/user-favorite.component';
 import { CartComponent } from './components/pages/cart/cart.component';
+import { BookFilterComponent } from './components/pages/book-filter/book-filter.component';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { CartComponent } from './components/pages/cart/cart.component';
     UserAuthComponent,
     UserProfileComponent,
     UserFavoriteComponent,
-    CartComponent
+    CartComponent,
+    BookFilterComponent
   ],
   imports: [
     BrowserModule,

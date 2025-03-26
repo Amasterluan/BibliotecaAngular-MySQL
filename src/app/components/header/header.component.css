@@ -149,3 +149,21 @@ header {
   padding: 5px;
 }
 
+.sugestoes-lista {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  list-style: none;
+  padding: 0;
+  width: 200px;
+  z-index: 1000;
+}
+
+.sugestoes-lista li {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.sugestoes-lista li:hover {
+  background: #eee;
+}

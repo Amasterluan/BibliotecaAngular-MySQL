@@ -51,17 +51,6 @@ CREATE TABLE IF NOT EXISTS `bancolivraria`.`enderecos` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `bancolivraria`.`formas_pagamentos`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bancolivraria`.`formas_pagamentos` (
-  `idformas_pagamentos` INT NOT NULL auto_increment,
-  `tipo_pagamento` VARCHAR(45) NULL,
-  `desconto` DECIMAL(5,2) NULL,
-  PRIMARY KEY (`idformas_pagamentos`))
-ENGINE = InnoDB;
-
 -- -----------------------------------------------------
 -- Table `bancolivraria`.`livros`
 -- -----------------------------------------------------
@@ -88,21 +77,14 @@ CREATE TABLE IF NOT EXISTS `bancolivraria`.`compras` (
   `datacompra` DATE NULL,
   `total` DECIMAL(10,0) NOT NULL,
   `idusuarios` INT NOT NULL,
-  `idformas_pagamentos` INT NOT NULL,
   `idlivros` INT NOT NULL,
   `quantidade` INT NOT NULL,
-  PRIMARY KEY (`idcompras`, `idusuarios`, `idformas_pagamentos`, `idlivros`),
+  PRIMARY KEY (`idcompras`, `idusuarios`, `idlivros`),
   INDEX `fk_compras_usuarios1_idx` (`idusuarios` ASC) VISIBLE,
-  INDEX `fk_compras_formas_pagamentos1_idx` (`idformas_pagamentos` ASC) VISIBLE,
   INDEX `fk_compras_livros1_idx` (`idlivros` ASC) VISIBLE,
   CONSTRAINT `fk_compras_usuarios1`
     FOREIGN KEY (`idusuarios`)
     REFERENCES `bancolivraria`.`usuarios` (`idusuarios`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_compras_formas_pagamentos1`
-    FOREIGN KEY (`idformas_pagamentos`)
-    REFERENCES `bancolivraria`.`formas_pagamentos` (`idformas_pagamentos`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_compras_livros1`
@@ -144,11 +126,9 @@ INSERT INTO `livros` (`idlivros`, `imagem`, `titulo_livro`, `anopublicacao`, `de
 (4, 'https://m.media-amazon.com/images/I/51nNwwVSclL._SL1007_.jpg', 'O Pequeno Príncipe', '1943-04-06', 'Uma história atemporal sobre amizade e amor.', 30, 30, 'Antoine de Saint-Exupéry', 'Ficção', 'Agir'),
 (5, 'https://m.media-amazon.com/images/I/91Q2QLxT6BL._SL1500_.jpg', 'Dom Quixote', '1605-01-16', 'As aventuras do cavaleiro errante Dom Quixote e seu fiel escudeiro, Sancho Pança.', 12, 65, 'Miguel de Cervantes', 'Clássico', 'Penguin');
 
-select * from livros;
-select * from enderecos;
-select * from usuarios;
+INSERT INTO `usuarios` (`idusuarios`,`nome_user`,`email_user`,`senha_user`) values
+(1, 'Luan','amaster','1234');
 
-select * from usuarios;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

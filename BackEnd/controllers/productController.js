@@ -1,22 +1,25 @@
 // backend/controllers/productController.js
-const db = require('../config/db');
+const db = require("../config/db");
 
 // Obter todos os produtos
 const getProducts = (req, res) => {
-  db.query("SELECT idlivros AS id, imagem AS image,  titulo_livro AS title, anoPublicacao AS year,  descricao AS description, estoque AS stock, preco AS price, nome_autor AS author, nome_genero AS genre, nome_editora AS publisher FROM livros", (err, results) => {
-    if (err) {
-      console.error("Erro ao buscar produtos:", err);
-      return res.status(500).json({ error: "Erro ao buscar produtos" });
+  db.query(
+    "SELECT idlivros AS id, imagem AS image,  titulo_livro AS title, anoPublicacao AS year,  descricao AS description, estoque AS stock, preco AS price, nome_autor AS author, nome_genero AS genre, nome_editora AS publisher FROM livros",
+    (err, results) => {
+      if (err) {
+        console.error("Erro ao buscar produtos:", err);
+        return res.status(500).json({ error: "Erro ao buscar produtos" });
+      }
+      res.json(results);
     }
-    res.json(results);
-  });
+  );
 };
 
 // Obter um produto pelo ID
 const getProductById = (req, res) => {
   const { id } = req.params;
 
-  console.log("Buscando produto com ID:", id); // Log para ver se o ID está chegando corretamente
+  //console.log("Buscando produto com ID:", id); // Log para ver se o ID está chegando corretamente
 
   db.query(
     `SELECT idlivros AS id, imagem AS image, titulo_livro AS title, anoPublicacao AS year, descricao AS description, estoque AS stock, preco AS price, nome_autor AS author, nome_genero AS genre, nome_editora AS publisher FROM livros WHERE idlivros = ?`,
@@ -40,17 +43,42 @@ const getProductById = (req, res) => {
 
 // Adicionar um novo produto
 const addProduct = (req, res) => {
-  const { imagem, titulo_livro, anopublicacao, descricao, estoque, preco, nome_autor, nome_genero, nome_editora } = req.body;
+  const {
+    imagem,
+    titulo_livro,
+    anopublicacao,
+    descricao,
+    estoque,
+    preco,
+    nome_autor,
+    nome_genero,
+    nome_editora,
+  } = req.body;
 
   db.query(
     "INSERT INTO livros (imagem, titulo_livro, anopublicacao, descricao, estoque, preco, nome_autor, nome_genero, nome_editora) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-    [imagem, titulo_livro, anopublicacao, descricao, estoque, preco, nome_autor, nome_genero, nome_editora],
+    [
+      imagem,
+      titulo_livro,
+      anopublicacao,
+      descricao,
+      estoque,
+      preco,
+      nome_autor,
+      nome_genero,
+      nome_editora,
+    ],
     (err, result) => {
       if (err) {
         console.error("Erro ao adicionar produto:", err);
         return res.status(500).json({ error: "Erro ao adicionar produto" });
       }
-      res.status(201).json({ message: "Produto adicionado com sucesso", id: result.insertId });
+      res
+        .status(201)
+        .json({
+          message: "Produto adicionado com sucesso",
+          id: result.insertId,
+        });
     }
   );
 };
@@ -58,18 +86,41 @@ const addProduct = (req, res) => {
 // Atualizar um produto
 const updateProduct = (req, res) => {
   const { id } = req.params;
-  const { imagem, titulo_livro, anopublicacao, descricao, estoque, preco, nome_autor, nome_genero, nome_editora } = req.body;
+  const {
+    imagem,
+    titulo_livro,
+    anopublicacao,
+    descricao,
+    estoque,
+    preco,
+    nome_autor,
+    nome_genero,
+    nome_editora,
+  } = req.body;
 
   // Verificar se campos obrigatórios estão presentes
   if (!titulo_livro || !descricao || !estoque || !preco || !nome_autor) {
-    return res.status(400).json({ error: "Campos obrigatórios não preenchidos!" });
+    return res
+      .status(400)
+      .json({ error: "Campos obrigatórios não preenchidos!" });
   }
 
-  console.log("Dados recebidos para atualização:", req.body);  // Verifique os dados que estão chegando
+  console.log("Dados recebidos para atualização:", req.body); // Verifique os dados que estão chegando
 
   db.query(
     "UPDATE livros SET imagem = ?, titulo_livro = ?, anopublicacao = ?, descricao = ?, estoque = ?, preco = ?, nome_autor = ?, nome_genero = ?, nome_editora = ? WHERE idlivros = ?",
-    [imagem, titulo_livro, anopublicacao, descricao, estoque, preco, nome_autor, nome_genero, nome_editora, id],
+    [
+      imagem,
+      titulo_livro,
+      anopublicacao,
+      descricao,
+      estoque,
+      preco,
+      nome_autor,
+      nome_genero,
+      nome_editora,
+      id,
+    ],
     (err, result) => {
       if (err) {
         console.error("Erro ao atualizar produto:", err);
@@ -85,8 +136,6 @@ const updateProduct = (req, res) => {
   );
 };
 
-
-
 // Deletar um produto
 const deleteProduct = (req, res) => {
   const { id } = req.params;
@@ -99,4 +148,41 @@ const deleteProduct = (req, res) => {
   });
 };
 
-module.exports = { getProducts, getProductById, addProduct, deleteProduct, updateProduct };
+//Pesquisar o produto
+const searchProducts = (req, res) => {
+  console.log("Recebida requisição de busca:", req.query); // Log para debug
+  const query = req.query.query;
+
+  if (!query || query.trim() === "") {
+    return res.status(400).json({ message: "Termo de busca é obrigatório" });
+  }
+
+  const searchQuery = `%${query}%`;
+
+  db.query(
+    `SELECT idlivros AS id, imagem AS image, titulo_livro AS title, 
+     anoPublicacao AS year, descricao AS description, estoque AS stock, 
+     preco AS price, nome_autor AS author, nome_genero AS genre, 
+     nome_editora AS publisher 
+     FROM livros 
+     WHERE titulo_livro LIKE ? OR nome_autor LIKE ? OR nome_genero LIKE ?`,
+    [searchQuery, searchQuery, searchQuery],
+    (err, results) => {
+      if (err) {
+        console.error("Erro no banco de dados:", err);
+        return res.status(500).json({ error: "Erro ao buscar produtos" });
+      }
+      console.log("Resultados encontrados:", results.length); // Log de resultados
+      res.json(results);
+    }
+  );
+};
+
+module.exports = {
+  getProducts,
+  getProductById,
+  addProduct,
+  deleteProduct,
+  updateProduct,
+  searchProducts,
+};

@@ -10,6 +10,7 @@ import { UserAuthComponent } from './components/pages/user-auth/user-auth.compon
 import { UserProfileComponent } from './components/pages/user-profile/user-profile.component';
 import { UserFavoriteComponent } from './components/pages/user-favorite/user-favorite.component';
 import { CartComponent } from './components/pages/cart/cart.component';
+import { BookFilterComponent } from './components/pages/book-filter/book-filter.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: 'details/:id', component: ProductDetailsComponent},
   {path: 'user-profile', component: UserProfileComponent}, 
   {path: 'favorite', component: UserFavoriteComponent},
-  {path: 'cart', component: CartComponent}
+  {path: 'cart', component: CartComponent},
+  {path: 'books', component: BookFilterComponent}
 
 ];
 
